@@ -33,17 +33,15 @@ cp ./SugarCE/config_si.php ./SugarCE/install/
 echo -e "<?php\n\$sugar_config['http_referer']['actions']=array( 'index', 'ListView', 'DetailView', 'EditView', 'oauth', 'authorize', 'Authenticate', 'Login', 'SupportPortal', 'SaveTimezone' )\n?>" > ./SugarCE/config_override.php
 
 # deploy SugarCRM into Apache
+chown -R www-data ./SugarCE
+chmod 664 ./SugarCE/config.php
+chmod 664 ./SugarCE/config_override.php
+chmod 775 ./SugarCE/custom
+chmod -R 775 ./SugarCE/cache
+chmod -R 775 ./SugarCE/modules
+chmod 775 ./SugarCE/upload
+chmod 777 ./SugarCE/sugarcrm.log
 mv ./SugarCE /var/www
-#chgrp -R www-data /var/www/*
-chown -R www-data:root /var/www
-chmod -R 777 /var/www
-chmod -R 777 /var/www/SugarCE/cache
-chmod -R 777 /var/www/SugarCE/custom
-chmod -R 777 /var/www/SugarCE/modules
-chmod -R 777 /var/www/SugarCE/themes
-chmod -R 777 /var/www/SugarCE/data
-chmod -R 777 /var/www/SugarCE/upload
-chmod -R 777 /var/www/SugarCE/config_override.php
 
 # auto install SugarCRM in silent mode
 curl -X POST http://localhost/SugarCE/install.php?goto=SilentInstall&cli=true 

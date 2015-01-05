@@ -6,7 +6,7 @@ FROM ubuntu:12.04
 RUN apt-get update && \
     apt-get install -y \ 
 	apache2 \
-	php5 \
+	php5 php5-cli \
 	php5-gd php5-curl php5-imap php5-mysql \
 	unzip \
 	curl \
